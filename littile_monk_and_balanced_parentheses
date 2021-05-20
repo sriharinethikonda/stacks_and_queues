@@ -19,12 +19,11 @@ int main() {
 	         if(st.top()==-1*a[i]){
 	             st.pop();
 	             len=max(len,i-st.top());
-	             cout<<"len is"<<len<<"\n";
 	         }
 	         else{
 	             st.push(i);
 	         }
 	   }
-	  // cout<<len<<"\n";
+	   cout<<len<<"\n";
 	return 0;
 }
