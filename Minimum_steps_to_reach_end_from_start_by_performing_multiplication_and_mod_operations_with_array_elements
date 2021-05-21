@@ -1,0 +1,41 @@
+#include <iostream>
+#include<queue>
+#include<bits/stdc++.h>
+using namespace std;
+int n;
+void BFS(int n,int start,int end,int a[]){
+    queue <pair<int,int>>qe;
+    qe.push({start,0});
+    int visit[100000]={0};
+    visit[start]=1;
+    while(!qe.empty()){
+        auto it=qe.front();
+        int num=it.first;
+        int steps=it.second;
+        qe.pop();
+        for(int i=0;i<n;i++){
+            int res=(num*a[i])%100000;
+            if(res==end){
+                cout<<steps+1;
+                return;
+            }
+            if(!visit[res]){
+                visit[res]=1;
+                qe.push({res,steps+1});
+                
+            }
+            }
+        }
+        cout<<"-1"<<" ";
+    }
+int main() {
+int start,end;
+cin>>start>>end;
+cin>>n;
+int a[n];
+for(int i=0;i<n;i++)
+    cin>>a[i];
+    BFS(n,start,end,a);
+    return 0;
+	return 0;
+}
