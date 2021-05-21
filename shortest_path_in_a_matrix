@@ -1,0 +1,65 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int n,m;
+bool isvalid(int i,int j,int mat[][3]){
+    if(i>=0&& i<3 && j>=0 && j<3 && mat[i][j]!=0){
+        return true;
+    }
+    return false;
+}
+
+void amazon(int n,int m, int matrix[][3]){
+    if(matrix[0][0]==0){
+        cout<<"-1"<<" ";
+        return;
+    }
+    else if(matrix[0][0]==9){
+        cout<<"0"<<" ";
+        return;
+    }
+    
+    queue <pair<pair<int,int>,int>> qe;
+    qe.push({{0,0},0});
+    int vis[n][m];
+    memset(vis,0,sizeof vis);
+    vis[0][0]=1;
+    int dx[]={-1,0,1,0};
+    int dy[]={0,1,0,-1};
+    while(!qe.empty()){
+        auto it=qe.front();
+        int i=it.first.first;
+        int j=it.first.second;
+        int steps=it.second;
+        qe.pop();
+        for(int x=0;x<4;x++){
+            int newi=i+dx[x];
+            int newj=j+dy[x];
+            if(isvalid(newi,newj,matrix) && !vis[newi][newj]){
+                if(matrix[newi][newj]==9){
+                    cout<<steps+1<<" ";
+                    return;
+                }
+                vis[newi][newj]=1;
+                qe.push({{newi,newj},steps+1});
+            }
+        }
+       
+    }
+     cout<<"-1"<<" ";
+    
+}
+
+int main() {
+    cin>>n>>m;
+    int matrix[3][3];
+    for(int k=0;k<n;k++){
+        for(int h=0;h<m;h++){
+            cin>>matrix[k][h];
+        }
+    }
+        
+         
+    amazon(n,m,matrix);
+	return 0;
+}
