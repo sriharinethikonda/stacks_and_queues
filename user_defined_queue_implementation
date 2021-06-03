@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+ struct myqueue{
+     int *arr;
+     int cap,size;
+     myqueue(int c){
+         cap=c;
+         size=0;
+         arr=new int[cap];
+     }
+     bool isempty(){
+        return size==0;
+     }
+     bool isfull(){
+         return size==cap;
+     }
+     void enqueue(int x){
+         if(isfull()){
+             cout<<"queue is full\n";
+             return;
+         }
+         arr[size]=x;
+         size++;
+     }
+     void dequeue(){
+         if(isempty()){
+             cout<<"queue is empty\n";
+             return;
+         }
+         for(int i=0;i<size-1;i++){
+             arr[i]=arr[i+1];
+         }
+         size--;
+     }
+   int front(){
+       if(isempty()){
+           cout<<"queue is empty\n";
+           return -1;
+       }
+       return arr[0];
+        
+    }
+     int rear(){
+         if(isempty()){
+             cout<<"queue is empty\n";
+             return -1;
+         }
+         return arr[size-1];
+     }
+ };
+int main() {
+    myqueue qe(5);
+    qe.enqueue(10);
+    qe.enqueue(20);
+   qe.enqueue(30);
+    qe.enqueue(40);
+    qe.enqueue(50);
+    cout<<qe.front()<<"\n";
+    cout<<qe.rear()<<"\n";
+    qe.dequeue();
+    cout<<qe.front()<<"\n";
+    cout<<qe.rear()<<"\n";
+    cout<<qe.isempty()<<"\n";
+    cout<<qe.isfull()<<"\n";
+    qe.dequeue();
+    qe.dequeue();
+    qe.dequeue();
+    qe.dequeue();
+    qe.dequeue();
+     qe.dequeue();
+      qe.dequeue();
+	return 0;
+}
